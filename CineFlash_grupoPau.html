@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlash - Tu Cine Local</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CineFlash_grupoPau.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🎬 CineFlash</a>
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        <h1 class="text-center mb-4">Bienvenidos a CineFlash</h1>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="dune2.jpg" class="card-img-top" alt="Duna Parte 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Duna Parte 2</h5>
+                        <p class="card-text">Paul Atreides se une a los Fremen y comienza un viaje espiritual y marcial para convertirse en Muad'dib.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary w-100 reservar-btn" data-movie="Duna Parte 2">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="oppenheimer.jpg" class="card-img-top" alt="Oppenheimer">
+                    <div class="card-body">
+                        <h5 class="card-title">Oppenheimer</h5>
+                        <p class="card-text">La historia del científico J. Robert Oppenheimer y su papel en el desarrollo de la bomba atómica.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary w-100 reservar-btn" data-movie="Oppenheimer">Reservar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="barbie.jpg" class="card-img-top" alt="Barbie">
+                    <div class="card-body">
+                        <h5 class="card-title">Barbie</h5>
+                        <p class="card-text">Barbie sufre una crisis que la lleva a cuestionar su mundo y su existencia.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary w-100 reservar-btn" data-movie="Barbie">Reservar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="reservaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reserva de Entradas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reservaForm">
+                        <div class="mb-3">
+                            <label for="pelicula-seleccionada" class="form-label">Película</label>
+                            <input type="text" class="form-control" id="pelicula-seleccionada" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="horario" class="form-label">Horario</label>
+                            <select class="form-select" id="horario" required>
+                                <option value="" disabled selected>Selecciona una hora</option>
+                                <option value="18:00">18:00</option>
+                                <option value="20:30">20:30</option>
+                                <option value="22:45">22:45</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cantidad-asientos" class="form-label">Cantidad de Asientos</label>
+                            <input type="number" class="form-control" id="cantidad-asientos" min="1" max="10" required>
+                        </div>
+                        <hr>
+                        <h6>Pago (simulado)</h6>
+                        <div class="mb-3">
+                            <label for="numero-tarjeta" class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-control" id="numero-tarjeta" placeholder="**** **** **** 1234" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre-titular" class="form-label">Nombre del titular</label>
+                            <input type="text" class="form-control" id="nombre-titular" required>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" form="reservaForm">Confirmar Reserva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="confirmacionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¡Reserva Exitosa!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tu reserva ha sido confirmada con éxito. ¡Disfruta la función!</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Película:</strong> <span id="confirmacion-pelicula"></span></li>
+                        <li class="list-group-item"><strong>Horario:</strong> <span id="confirmacion-horario"></span></li>
+                        <li class="list-group-item"><strong>Asientos:</strong> <span id="confirmacion-asientos"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="CineFlash_grupoPau.js"></script>
+</body>
+</html>
